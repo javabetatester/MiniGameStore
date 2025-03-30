@@ -163,7 +163,7 @@ public class Jogador implements Loja {
     //   - estrela (int) - a classificação em estrelas
     @Override
     public void avaliarJogo(Jogo j, int estrela) {
-        // Método sem implementação (vazio)
+
     }
 
     // Tipo: Método (implementação de interface)
@@ -178,7 +178,7 @@ public class Jogador implements Loja {
         for (Jogo jogo: this.listaJogos){
             if(jogo != null){  // Verifica se a posição do array não é nula
                 // PROBLEMA: Comparação de strings com == em vez de .equals()
-                if(jogo.getTitulo() == j.getTitulo()){  // Verifica se é o jogo desejado
+                if(jogo.getTitulo().equals(j.getTitulo())){  // Verifica se é o jogo desejado
                     this.horasJogadas += horas;  // Adiciona as horas ao total do jogador
                     jogo.setTempoJogado(horas);  // Registra as horas no objeto jogo
                 }else {
@@ -188,4 +188,24 @@ public class Jogador implements Loja {
             }
         }
     }
+
+    public void exibirBiblioteca() {
+        System.out.println("=== Biblioteca de " + this.nome + " ===");
+        boolean temJogos = false;
+
+        for (Jogo jogo : this.listaJogos) {
+            if (jogo != null) {
+                temJogos = true;
+                System.out.println("Título: " + jogo.getTitulo());
+                System.out.println("Gênero: " + jogo.getGenero());
+                System.out.println("Tempo jogado: " + this.horasJogadas + " horas");
+                System.out.println("---------------------");
+            }
+        }
+
+        if (!temJogos) {
+            System.out.println("Biblioteca vazia!");
+        }
+    }
+
 }
